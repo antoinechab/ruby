@@ -1,0 +1,43 @@
+<% if controller.action_name == "index" %>
+<div class="col-md-4">
+  <div class="card mb-3">
+    <%= image_tag "maxime-sueur.png", class: "card-img-top" %>
+    <div class="card-body">
+      <h5 class="card-title"><%= product.name %></h5>
+      <div class="card-description">
+        <p><%= product.number %></p>
+      </div>
+      <%= link_to "Show this product", product, class: "btn btn-primary" %>
+    </div>
+  </div>
+</div>
+<% else %>
+<table  class="table table-striped">
+<thead>
+  <tr>
+    <th>name</th>
+    <th>number</th>
+    <th>delivery date</th>
+    <th>on site</th>
+    <th>stat</th>
+    <th>actions</th>
+    <th></th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td><%= product.name %></td>
+    <td><%= product.number %></td>
+    <td><%= product.deliveryDate %></td>
+    <td><%= product.onSite %></td>
+    <td><%= product.stat %></td>
+    <td>
+      <%= button_to "Edit", edit_product_path(@product), method: :get, class: "btn btn-primary btn-sm mr-2" %>
+    </td>
+    <td>
+      <%= button_to "Delete", product_path(@product), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm" %>
+    </td>
+  </tr>
+</tbody>
+</table>
+<% end %>

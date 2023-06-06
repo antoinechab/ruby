@@ -1,0 +1,35 @@
+<h1>Liste des clients</h1>
+
+<%= render "shared/searchbar", search_path: clients_path %>
+
+<%= link_to ' New', new_client_path, class: "fa fa-plus btn btn-success"%>
+  <div class="card-body">
+    <% l = 0 %>
+      <table class="table table-hover">
+          <thead  class="thead-dark">
+            <tr>
+                <th scope="row" colspan="1">username</th>
+                <th scope="row" colspan="1">lastname</th>
+                <th scope="row" colspan="1">user</th>
+            </tr>
+          </thead>
+        <% @clients.each do |client| %>
+            <tbody >
+                <tr>
+                  <td><%= client.username %></td>
+                  <td><%= client.lastname %></td>
+                  <td><%= client.full_name %></td>
+                  <td class="taches">
+                    <div class="d-flex">
+                      <%= link_to '', edit_client_path(client), class: "btn fa fa-pen tdhidden" %>
+                      <%= button_to '', client, method: :delete, :onclick => "return confirm('Are you sure you want to delete?')", class: "btn text-danger fa fa-trash tdhidden" %>
+                    </div>
+                  </td>
+                </tr>
+            </tbody>
+        <% end %>
+      </table>
+  </div>
+
+
+<%= link_to " Back", :back , class: "fas fa-arrow-left btn btn-outline-secondary"%>

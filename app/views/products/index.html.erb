@@ -1,0 +1,17 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Products</h1>
+
+<%= render "shared/searchbar", search_path: products_path %>
+
+<%= link_to "New product", new_product_path, class: "btn btn-primary" %>
+<br><br>
+<div id="products">
+  <div class="container">
+    <div class="row">
+      <% @products.each do |product| %>
+        <%= render product %>
+      <% end %>
+    </div>
+  </div>
+</div>
