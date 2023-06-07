@@ -15,5 +15,3 @@ rails db:seed
 4/
 rails s
 
-heroku run rake db:migrate --app staging-ruby-hesias
-heroku run rake db:drop --app staging-ruby-hesias
