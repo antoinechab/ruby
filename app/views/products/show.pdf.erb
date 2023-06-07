@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Products</title>
+    <style>
+      /* Ajoute ici le style CSS pour le rendu du PDF */
+    </style>
+  </head>
+  <body>
+    <h1>Products</h1>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Number</th>
+          <!-- Ajoute ici d'autres colonnes selon tes besoins -->
+        </tr>
+      </thead>
+      <tbody>
+        <% @products.each do |product| %>
+          <tr>
+            <td><%= product.name %></td>
+            <td><%= product.number %></td>
+            <!-- Ajoute ici d'autres colonnes selon tes besoins -->
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </body>
+</html>

@@ -6,6 +6,8 @@
 
 <%= link_to "Export CSV", export_csv_products_path(format: :csv), class: "btn btn-primary" %>
 <%= link_to "Export JSON", export_json_products_path(format: :json), class: "btn btn-primary" %>
+<%= link_to "Export PDF", product_path(@products.first, format: :pdf), class: "btn btn-primary" %>
+
 
 <%= link_to "New product", new_product_path, class: "btn btn-primary" %>
 <br><br>

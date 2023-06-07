@@ -26,17 +26,27 @@ class ProductsController < ApplicationController
 
   # GET /products/1 or /products/1.json
   def show
+    @products = Product.all
+  
+    respond_to do |format|
+      format.html # Rendu de la page HTML normale
+      format.pdf do
+        render pdf: "show"
+      end
+    end
   end
 
   # GET /products/new
   def new
     @product = Product.new
     @clients = Client.all
+    @product_delivery_dates = ProductDeliveryDate.all
   end
 
   # GET /products/1/edit
   def edit
     @clients = Client.all
+    @product_delivery_dates = ProductDeliveryDate.all
   end
 
   # POST /products or /products.json
@@ -92,6 +102,16 @@ class ProductsController < ApplicationController
       format.json { render json: @products }
     end
   end
+  
+  def export_pdf
+    @products = Product.all
+  
+    respond_to do |format|
+      format.pdf do
+        render pdf: "show"
+      end
+    end
+  end    
 
   private
 
@@ -112,6 +132,6 @@ class ProductsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def product_params
-      params.require(:product).permit(:name, :number, :deliveryDate, :onSite, :stat, :client_id)
+      params.require(:product).permit(:name, :number, :deliveryDate, :onSite, :stat, :client_id, :product_delivery_date_id)
     end
 end

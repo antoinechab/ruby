@@ -1,6 +1,5 @@
 
 <%= simple_form_for(@product) do |f| %>
-  <% @product.deliveryDate = @product.deliveryDate || Date.today %>
   
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
@@ -8,14 +7,18 @@
   <div class="form-inputs">
     <%= f.input :name %>
     <%= f.input :number %>
-    <%= f.input :deliveryDate, html5: true %>
     <%= f.input :onSite %>
     <%= f.input :stat, as: :radio_buttons, collection: Product::STATS, checked: @product.stat || Product::STATS.first %>
     <%= f.association :client, collection: @clients,
         :label_method => :full_name,
         :value_method => :id,
         :label => "Utilisateur"
-      %>
+    %>
+    <%= f.association :product_delivery_date, collection: @product_delivery_dates,
+      :label_method => :deliveryDate,
+      :value_method => :id,
+      :label => "Date livraison"
+    %>
   </div>
 
   <div class="form-actions btn btn-primary btn-sm mr-2">

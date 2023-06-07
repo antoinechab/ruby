@@ -1,0 +1,41 @@
+<h1>Liste des date de livraison</h1>
+
+<%= link_to ' New', new_product_delivery_date_path, class: "fa fa-plus btn btn-success"%>
+
+<%= link_to "Archive all", archive_all_product_delivery_dates_path(), class: "btn btn-primary" %>
+
+<div class="card-body">
+<% l = 0 %>
+    <table class="table table-hover">
+        <thead  class="thead-dark">
+        <tr>
+            <th scope="row" colspan="1">delivery date</th>
+            <th scope="row" colspan="1">archive</th>
+            <th scope="row" colspan="1">products list</th>
+            <th scope="row" colspan="1">actions</th>
+        </tr>
+        </thead>
+    <% @product_delivery_dates.each do |product_delivery_date| %>
+        <tbody >
+            <tr>
+                <td><%= product_delivery_date.deliveryDate %></td>
+                <td><%= product_delivery_date.archive %></td>
+                <td>
+                <% product_delivery_date.products.each do |product|%>
+                      <li><%= product.name %></li>
+                    <% end %>
+                </td>
+                <td class="taches">
+                    <div class="d-flex">
+                        <%= link_to '', edit_product_delivery_date_path(product_delivery_date), class: "btn fa fa-pen tdhidden" %>
+                        <%= button_to '', product_delivery_date, method: :delete, :onclick => "return confirm('Are you sure you want to delete?')", class: "btn text-danger fa fa-trash tdhidden" %>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    <% end %>
+    </table>
+</div>
+
+
+<%= link_to " Back", :back , class: "fas fa-arrow-left btn btn-outline-secondary"%>

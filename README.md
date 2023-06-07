@@ -22,3 +22,17 @@ heroku run rake db:drop --app staging-ruby-hesias
 
 outil pdf pour imprimer les produit
 boutons filtre neuf occas reco
+
+
+
+rails generate model productDeliveryDate deliveryDate:date archive:boolean       
+rails generate migration RemoveDeliveryDateToProduct product:references	
+rails generate migration AddDeliveryDateReferenceToProduct product:references	
+rails generate controller ProductDeliveryDate index new create update edit destroy  --no-assets --no-helper		
+		
+
+rails generate migration DropTableDeliveryDateToProduct productDateDelivery:references	
+		
+				
+		
+		
