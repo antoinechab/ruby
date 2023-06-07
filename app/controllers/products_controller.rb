@@ -12,6 +12,11 @@ class ProductsController < ApplicationController
       @products = Product.all
     end
 
+    # raise
+    if params[:condition].present?
+      @products = @products.where(stat: params[:condition])
+    end
+
     respond_to do |format|
       format.html # Rendu de la page HTML normale
       format.json { render json: @products } # Renvoi des produits en format JSON

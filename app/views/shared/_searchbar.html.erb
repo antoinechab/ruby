@@ -2,6 +2,9 @@
 <div class="mt-4">
   <%= form_tag search_path, method: :get, class: "form-inline justify-content-center" do %>
     <%= text_field_tag :search, params[:search], class: "form-control mr-2", placeholder: "Search" %>
+    <% if current_page?(products_path) %>
+      <%= render "shared/filtreproduct" %>
+    <% end %>
     <%= submit_tag "Search", class: "btn btn-primary" %>
   <% end %>
 </div>

@@ -1,0 +1,18 @@
+<div class="form-group">
+<label class="form-check-label">
+    <%= check_box_tag "condition[]", "reconditionné", params[:condition]&.include?("reconditionné") %>
+    Reconditionné
+</label>
+</div>
+<div class="form-group">
+<label class="form-check-label">
+    <%= check_box_tag "condition[]", "neuf", params[:condition]&.include?("neuf") %>
+    Neuf
+</label>
+</div>
+<div class="form-group">
+<label class="form-check-label">
+    <%= check_box_tag "condition[]", "occasion", params[:condition]&.include?("occasion") %>
+    Occasion
+</label>
+</div>

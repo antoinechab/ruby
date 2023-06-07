@@ -17,3 +17,8 @@ rails s
 
 heroku run rake db:migrate --app staging-ruby-hesias
 heroku run rake db:drop --app staging-ruby-hesias
+
+
+
+outil pdf pour imprimer les produit
+boutons filtre neuf occas reco
