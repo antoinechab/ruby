@@ -1,13 +1,22 @@
+require 'csv'
+
 class ProductsController < ApplicationController
   before_action :set_product, only: %i[ show edit update destroy ]
 
   # GET /products or /products.json
   def index
+
     if params[:search] && !params[:search].empty?
       @products = Product.search_all(params[:search])
     else
       @products = Product.all
     end
+
+    respond_to do |format|
+      format.html # Rendu de la page HTML normale
+      format.json { render json: @products } # Renvoi des produits en format JSON
+    end
+    
   end
 
   # GET /products/1 or /products/1.json
@@ -63,7 +72,34 @@ class ProductsController < ApplicationController
     end
   end
 
+  def export_csv
+    @products = Product.all
+
+    respond_to do |format|
+      format.csv { send_data generate_csv(@products), filename: "products.csv" }
+    end
+  end
+
+  def export_json
+    @products = Product.all
+
+    respond_to do |format|
+      format.json { render json: @products }
+    end
+  end
+
   private
+
+    def generate_csv(products)
+      CSV.generate(headers: true, :col_sep => ";") do |csv|
+        csv << ["Name", "Number", "Client_id", "created_at", "deliveryDate", "onSite", "stat"] # Ajoute les en-têtes des colonnes
+
+        products.each do |product|
+          csv << [product.name, product.number, product.client_id, product.created_at, product.deliveryDate, product.onSite, product.stat] # Ajoute les données de chaque produit
+        end
+      end
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_product
       @product = Product.find(params[:id])

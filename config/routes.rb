@@ -1,8 +1,18 @@
 Rails.application.routes.draw do
-  resources :products
+
+  resources :products do
+    collection do
+      get :export_csv
+      get :export_json
+    end
+  end
   
   devise_for :users
-  resources :users
+
+  resources :users do
+    post 'everybody_admin', on: :collection
+  end
+
   resources :clients
 
 

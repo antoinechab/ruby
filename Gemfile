@@ -86,3 +86,5 @@ end
 gem 'rails-erd', group: :development
 
 gem 'pg_search'
+
+gem 'csv'

